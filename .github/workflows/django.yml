@@ -44,11 +44,13 @@ jobs:
   deploy:
    
    runs-on: ubuntu-latest
-   
+   needs: [build]   
    steps:
     - uses: actions/checkout@v2   
     - name: Remote SSH Commands
+      
       uses: fifsky/ssh-action@v0.0.5
+      
       with:
         command: |
           cd /home/hassan
