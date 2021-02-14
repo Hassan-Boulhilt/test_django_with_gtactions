@@ -28,3 +28,13 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
+    - name: Remote SSH Commands
+      uses: fifsky/ssh-action@v0.0.5
+      with:
+        command: |
+          cd /tmp
+          ls -a
+        host: ${{ secrets.SERVER_IP }}
+        port: ${{ secrets.SERVER_PORT }}
+        user: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_KEY}}
