@@ -32,7 +32,7 @@ jobs:
       uses: fifsky/ssh-action@v0.0.5
       with:
         command: |
-          cd /tmp
+          cd /home/hassan
           ls -a
         host: ${{ secrets.SERVER_IP }}
         port: ${{ secrets.SERVER_PORT }}
