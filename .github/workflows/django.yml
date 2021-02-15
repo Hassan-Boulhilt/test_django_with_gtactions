@@ -57,7 +57,7 @@ jobs:
       with:
         command: |
           cd /var/www/develop.serviceswebassahara.com
-          ltouch dev
+          touch dev
         host: ${{ secrets.SERVER_IP }}
         port: ${{ secrets.SERVER_PORT }}
         user: ${{ secrets.SERVER_USER }}
@@ -97,7 +97,7 @@ jobs:
         with:
           command: |
             cd /var/www/develop.serviceswebassahara.com
-            touch dev
+            touch produ
           host: ${{ secrets.SERVER_IP }}
           port: ${{ secrets.SERVER_PORT }}
           user: ${{ secrets.SERVER_USER }}
