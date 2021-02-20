@@ -56,14 +56,14 @@ jobs:
       uses: fifsky/ssh-action@v0.0.5      
       with:
         command: |
-          cd /home/hassan
-          ls -a
+          cd /var/www/develop.serviceswebassahara.com
+          sudo touch dev
         host: ${{ secrets.SERVER_IP }}
         port: ${{ secrets.SERVER_PORT }}
         user: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SERVER_KEY}}
-    - name: Deploy
-      run: echo I am deploying!
+ 
+        
 
   DeployStaging:
     name: Deploy to Staging 
@@ -74,8 +74,16 @@ jobs:
       name: Staging
       url: 'http://staging.serviceswebassahara.com'
     steps:    
-    - name: Deploy
-      run: echo I am deploying! 
+    - name: Remote SSH Commands      
+      uses: fifsky/ssh-action@v0.0.5      
+      with:
+        command: |
+          cd /var/www/staging.serviceswebassahara.com
+          sudo touch staging
+        host: ${{ secrets.SERVER_IP }}
+        port: ${{ secrets.SERVER_PORT }}
+        user: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_KEY}} 
   DeployProd:
     name: Deploy to Production 
     needs: [DeployStaging]
@@ -84,8 +92,16 @@ jobs:
       name: Production
       url: 'http://serviceswebassahara.com'
     steps:
-      - name: Deploy
-        run: echo I am deploying! 
+      - name: Remote SSH Commands      
+        uses: fifsky/ssh-action@v0.0.5      
+        with:
+          command: |
+            cd /var/www/develop.serviceswebassahara.com
+            sudo touch produ
+          host: ${{ secrets.SERVER_IP }}
+          port: ${{ secrets.SERVER_PORT }}
+          user: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_KEY}}
     
     
       
